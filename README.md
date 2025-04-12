@@ -1,2 +1,2 @@
 # carshare_fastapi
-PluralSight_inspired_Code
+Using PydanticModel SQLLite - Designed Simple CarRideshare Website
