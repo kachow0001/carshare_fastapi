@@ -3,15 +3,39 @@ from typing import Optional
 from pydantic import BaseModel
 
 
+class TripsInput(BaseModel):
+    start: int
+    end: int
+    description: str
+
+
+class TripsOutput(TripsInput):
+    id: int
+
+
 class CarInput(BaseModel):
     size: str
     fuel: Optional[str] = "hybrid"
     doors: int
     transmission: Optional[str] = "auto"
 
+    model_config = {
+        "json_schema_extra": {
+            "examples": [
+                {
+                    "size": "m",
+                    "doors": 4,
+                    "transmission": "manual",
+                    "fuel": "hybrid"
+                }
+            ]
+        }
+    }
+
 
 class CarOutput(CarInput):
     id: int
+    trips: list[TripsOutput] = []
 
 
 def load_db():
